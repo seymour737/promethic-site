@@ -1,0 +1,102 @@
+/* =============================================================================
+   responsive.css · Breakpoints and motion                      STYLESHEET 4 OF 4
+   -----------------------------------------------------------------------------
+   Purpose   Overrides for smaller screens and for visitors who ask for
+             reduced motion. Loaded last so these rules win over sections.css.
+   Depends   sections.css
+   Order     tokens.css → base.css → sections.css → responsive.css
+
+   Breakpoints
+             ≤ 900px   Tablet and small laptop: single-column hero and About,
+                       project description drops below its title
+             ≤ 600px   Phone: smaller body text, location hidden from header,
+                       contact details stacked in one column
+   ========================================================================== */
+
+
+/* 4.1  Tablet (≤ 900px) ---------------------------------------------------- */
+@media (max-width: 900px) {
+
+  /* Hero stacks: statement, then portrait, then index */
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "lede"
+      "pic"
+      "nav";
+    grid-template-rows: auto;
+  }
+
+  .portrait {
+    min-height: 0;
+  }
+
+  .frame {
+    position: relative;
+    inset: auto;
+    margin: 0 auto;
+    width: min(380px, 100%);
+  }
+
+  .frame img {
+    height: auto;
+  }
+
+  #hello {
+    padding-bottom: clamp(40px, 8vw, 72px);
+  }
+
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Project row: title and artwork side by side, description full-width below */
+  .project {
+    grid-template-columns: minmax(0, 1fr) 150px;
+  }
+
+  .project-desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  /* Contact: email across the top, the other two columns beneath */
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .contact-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* 4.2  Phone (≤ 600px) ----------------------------------------------------- */
+@media (max-width: 600px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  .now .location {
+    display: none;
+  }
+
+  .project {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    gap: 16px;
+  }
+
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+/* 4.3  Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

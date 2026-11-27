@@ -1,0 +1,83 @@
+/* =============================================================================
+   base.css · Foundations                                       STYLESHEET 2 OF 4
+   -----------------------------------------------------------------------------
+   Purpose   Reset, page typography, layout primitives and shared utility
+             classes used by every section.
+   Depends   tokens.css
+   Order     tokens.css → base.css → sections.css → responsive.css
+   ========================================================================== */
+
+
+/* 2.1  Reset --------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;              /* keeps anchors clear of the sticky header */
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 "Geist", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+
+/* 2.2  Typography ---------------------------------------------------------- */
+h2 {
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+
+/* 2.3  Layout primitives --------------------------------------------------- */
+
+/* .band  Full-width page section with consistent vertical rhythm */
+.band {
+  padding-block: clamp(56px, 8vw, 120px);
+  padding-inline: max(5vw, 18px);
+}
+
+/* .deep  Modifier for a .band: switches it to the dark palette */
+.deep {
+  background: var(--deep);
+  color: var(--deep-ink);
+}
+
+/* .wrap  Centred content column inside a band */
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+
+/* 2.4  Utilities ----------------------------------------------------------- */
+
+/* .muted  Secondary text colour; adjusts automatically inside .deep bands */
+.muted        { color: var(--mute); }
+.deep .muted  { color: var(--deep-mute); }
+
+
+/* 2.5  Accessibility: keyboard focus ring ---------------------------------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}

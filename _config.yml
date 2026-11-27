@@ -1,0 +1,11 @@
+# =============================================================================
+# _config.yml · GitHub Pages build settings
+# -----------------------------------------------------------------------------
+# The site itself needs no processing. This file only stops the project
+# documentation from being published on the live website.
+# =============================================================================
+
+exclude:
+  - README.md
+  - CHANGELOG.md
+  - docs

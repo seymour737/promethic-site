@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+  Cwenga Tshingila · Personal portfolio
+  Live site   https://promethic.co.za
+  Markup only: styles live in assets/css/, behaviour and content in assets/js/.
+  To update projects or links, edit assets/js/content.js (see docs/MAINTENANCE.md).
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cwenga Tshingila</title>
+  <meta name="description" content="Cwenga Tshingila — computer educator and independent developer in Port Elizabeth, South Africa.">
+
+  <!-- Typeface: Geist (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles: order matters, each file builds on the one before -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Scripts: deferred, so they run in this order once the page is parsed -->
+  <script defer src="assets/js/content.js"></script>
+  <script defer src="assets/js/artwork.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+
+  <!-- =====================================================================
+       SITE HEADER · LED mark and name (left), location and live clock (right)
+       ===================================================================== -->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#hello" aria-label="Cwenga Tshingila, back to top">
+      <span class="led" id="led" aria-hidden="true"></span>   <!-- cells added by main.js -->
+      <span>Cwenga Tshingila</span>
+    </a>
+    <div class="now">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span class="location muted">Port Elizabeth</span>
+      <span class="clock" id="clock">--:--</span>                <!-- time set by main.js -->
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================================================================
+         SECTION 00 · HELLO · portrait, statement, section index
+         =================================================================== -->
+    <section class="band" id="hello">
+      <div class="wrap hero">
+        <figure class="portrait">
+          <div class="frame"><img src="assets/images/portrait.svg" width="600" height="690" alt="Illustrated portrait"></div>
+        </figure>
+        <div class="hero-text">
+          <h1 class="lede">I teach children to build with computers, and I <b>build the software</b> they learn with.</h1>
+          <div class="facts muted">
+            <span>Computer educator</span>
+            <span>Founder, Promethic</span>
+            <span>Freelance web developer</span>
+          </div>
+        </div>
+        <nav aria-label="Sections">
+          <ol class="index">
+            <li><a href="#about">About <small>01</small></a></li>
+            <li><a href="#work">Work <small>02</small></a></li>
+            <li><a href="#contact">Contact <small>03</small></a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 01 · ABOUT · introduction and ledger of facts
+         =================================================================== -->
+    <section class="band" id="about">
+      <div class="wrap">
+        <div class="about">
+          <h2>Hello.</h2>
+          <div class="about-copy">
+            <p>I'm Cwenga, a computer educator and independent developer. I teach <strong>Grades R to 7</strong> at Victoria Park Grey Primary, and run the school's coding and robotics extramural.</p>
+            <p>I design and develop educational apps under <strong>Promethic</strong>, my own company, and build websites for small businesses in my city.</p>
+            <p class="muted">I <strong>believe deeply</strong> in the idea that people learn best when they feel seen. That idea shapes the classroom I run and the software I make.</p>
+          </div>
+        </div>
+        <dl class="ledger">
+          <div><dt>Education</dt><dd>BEd, cum laude, Nelson Mandela University</dd></div>
+          <div><dt>Teaching</dt><dd>Victoria Park Grey Primary, Walmer</dd></div>
+          <div><dt>Company</dt><dd>Promethic</dd></div>
+          <div><dt>Approach</dt><dd>Humanising pedagogy, build first</dd></div>
+          <div><dt>Toolkit</dt><dd>HTML, CSS, JavaScript, Firebase, Android (Java), MakeCode</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 02 · WORK · project list
+         Projects are defined in assets/js/content.js and rendered by main.js
+         =================================================================== -->
+    <section class="band deep" id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Selected work</h2>
+          <p class="muted">Apps, sites and classroom tools. Most of it was built for people I know: learners, colleagues, and businesses down the road.</p>
+        </div>
+        <ul class="project-list" id="project-list"></ul>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 03 · CONTACT · call to action, contact details, footer
+         "Elsewhere" links are defined in assets/js/content.js
+         =================================================================== -->
+    <section class="band deep" id="contact">
+      <div class="wrap contact">
+        <h2 class="big-cta">Let's<br><span>talk.</span></h2>
+        <dl class="contact-grid">
+          <div>
+            <dt>Email</dt>
+            <dd class="mail">
+              <a id="email" href="mailto:cwenga@promethic.co.za">cwenga@promethic.co.za</a>
+              <button class="copy-btn" id="copy-email" type="button">Copy</button>
+            </dd>
+          </div>
+          <div>
+            <dt>Elsewhere</dt>
+            <dd><ul class="links" id="link-list"></ul></dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Port Elizabeth,<br>South Africa</dd>
+            <dd class="availability muted">Open to freelance web and app work.</dd>
+          </div>
+        </dl>
+        <footer class="site-footer muted">
+          <span>© 2026 Cwenga Tshingila</span>
+          <a href="#hello">Back to top ↑</a>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

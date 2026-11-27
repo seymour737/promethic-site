@@ -1,0 +1,42 @@
+/* =============================================================================
+   tokens.css · Design tokens                                   STYLESHEET 1 OF 4
+   -----------------------------------------------------------------------------
+   Purpose   Single source of truth for every colour on the site. Components
+             refer to these variables, never to raw hex values, so a change
+             here updates the whole page.
+   Theme     light-dark(LIGHT, DARK) follows the visitor's OS setting.
+             Setting <html data-theme="light|dark"> forces one mode.
+   Order     tokens.css → base.css → sections.css → responsive.css
+   See also  docs/DESIGN.md
+   ========================================================================== */
+
+
+/* 1.1  Palette ------------------------------------------------------------- */
+:root {
+  color-scheme: light dark;
+
+  /* Light bands: Hello and About (adapt to light/dark mode) */
+  --bg:   light-dark(#E8E5DF, #151412);   /* page background, warm stone */
+  --surf: light-dark(#F1EFEA, #1C1B19);   /* raised surface (reserved)   */
+  --ink:  light-dark(#171615, #ECE8E1);   /* primary text                */
+  --mute: light-dark(#5C5852, #A39D93);   /* secondary text and labels   */
+  --rule: light-dark(#CDC8BF, #2E2C29);   /* hairline dividers           */
+
+  /* Deep bands: Work and Contact (always dark) */
+  --deep:       light-dark(#1B1A18, #0D0C0B);   /* band background          */
+  --tile:       light-dark(#252421, #191816);   /* project artwork tile      */
+  --deep-ink:   #ECE8E1;                        /* primary text              */
+  --deep-body:  #D6D1C8;                        /* project descriptions      */
+  --deep-mute:  #A39D93;                        /* secondary text            */
+  --deep-rule:  #34322E;                        /* dividers and chip borders */
+  --deep-hover: #2A2825;                        /* button hover fill         */
+
+  /* Accents */
+  --sand:   #C4B395;   /* the one accent: artwork, project status, link hover */
+  --signal: #7D8A6E;   /* "available" dot in the header                       */
+}
+
+
+/* 1.2  Manual theme override (optional hook, not set by the site) ---------- */
+:root[data-theme=light] { color-scheme: light; }
+:root[data-theme=dark]  { color-scheme: dark; }

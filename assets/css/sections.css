@@ -1,0 +1,469 @@
+/* =============================================================================
+   sections.css · Page sections                                 STYLESHEET 3 OF 4
+   -----------------------------------------------------------------------------
+   Purpose   Styles for each part of the page, in the order they appear.
+   Depends   tokens.css, base.css
+   Order     tokens.css → base.css → sections.css → responsive.css
+
+   Contents  3.1  Site header      sticky bar, LED mark, local clock
+             3.2  Hello  (#hello)   portrait, statement, section index
+             3.3  About  (#about)   introduction, ledger of facts
+             3.4  Work   (#work)    project list
+             3.5  Contact (#contact) call to action, contact grid, footer
+   ========================================================================== */
+
+
+/* 3.1  Site header -------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px max(5vw, 18px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s;
+}
+
+/* Added by main.js once the page scrolls, to reveal the divider */
+.site-header.scrolled {
+  border-bottom-color: var(--rule);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+
+/* LED mark: a 5 × 5 grid of cells, animated by main.js (startLedMark) */
+.led {
+  display: grid;
+  grid-template-columns: repeat(5, 4px);
+  gap: 2px;
+}
+
+.led i {
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--rule);
+  transition: background .25s;
+}
+
+.led i.on {
+  background: var(--ink);
+}
+
+/* "Now" readout: availability dot, location, clock */
+.now {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 22%, transparent);
+}
+
+.clock {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* 3.2  Hello (#hello) ----------------------------------------------------- */
+#hello {
+  padding-top: 0;
+  padding-bottom: clamp(32px, 4vw, 56px);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Desktop: portrait on the left; statement above the index on the right */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  grid-template-areas:
+    "pic lede"
+    "pic nav";
+  grid-template-rows: auto 1fr;
+  gap: clamp(28px, 3vw, 44px) clamp(32px, 6vw, 96px);
+  padding-top: clamp(28px, 5vw, 64px);
+}
+
+.portrait {
+  grid-area: pic;
+  position: relative;
+  margin: 0;
+  min-height: 440px;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.hero-text {
+  grid-area: lede;
+  display: grid;
+  gap: 22px;
+}
+
+.hero nav {
+  grid-area: nav;
+  align-self: end;
+}
+
+.lede {
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+
+.lede b {
+  font-weight: 500;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  font-size: 15px;
+}
+
+.facts span {
+  white-space: nowrap;
+}
+
+/* Section index: oversized numbered links to About, Work, Contact */
+.index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.index a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0 10px;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  font-weight: 300;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  transition: color .25s, padding .3s;
+}
+
+.index small {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hovering the list dims every entry except the one under the pointer */
+.index:hover a {
+  color: var(--mute);
+}
+
+.index a:hover,
+.index a:focus-visible {
+  color: var(--ink);
+  padding-left: 14px;
+}
+
+
+/* 3.3  About (#about) ----------------------------------------------------- */
+#about {
+  padding-top: clamp(24px, 4vw, 56px);   /* tighter than .band: follows the hero */
+}
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(28px, 6vw, 96px);
+}
+
+.about-copy {
+  display: grid;
+  gap: 24px;
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.42;
+  letter-spacing: -.015em;
+  font-weight: 300;
+  max-width: 34em;
+}
+
+.about-copy strong {
+  font-weight: 500;
+}
+
+/* Ledger: label/value pairs that wrap into as many columns as fit */
+.ledger {
+  margin-top: clamp(36px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+  border-top: 1px solid var(--rule);
+}
+
+.ledger div {
+  padding: 18px 20px 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger dt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mute);
+  margin-bottom: 4px;
+}
+
+.ledger dd {
+  margin: 0;
+  font-size: 16px;
+}
+
+
+/* 3.4  Work (#work) ------------------------------------------------------- */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 40px;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+.section-head p {
+  max-width: 28em;
+}
+
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--deep-rule);
+}
+
+/* One project row: title | description | artwork */
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.6fr) 180px;
+  gap: clamp(18px, 3vw, 48px);
+  align-items: center;
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-bottom: 1px solid var(--deep-rule);
+}
+
+.project h3 {
+  font-weight: 400;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.project-kind {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.project-status {
+  font-size: 13px;
+  color: var(--sand);
+  white-space: nowrap;
+}
+
+.project p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--deep-body);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.project-tags span {
+  font-size: 13px;
+  padding: 3px 10px;
+  border: 1px solid var(--deep-rule);
+  border-radius: 99px;
+  color: var(--deep-mute);
+  white-space: nowrap;
+}
+
+/* Artwork tile: SVG from artwork.js, drawn in the sand accent */
+.project-art {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background: var(--tile);
+  color: var(--sand);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: transform .5s cubic-bezier(.2, .7, .2, 1);
+}
+
+.project-art svg {
+  width: 78%;
+  height: 78%;
+}
+
+.project:hover .project-art {
+  transform: scale(1.03);
+}
+
+
+/* 3.5  Contact (#contact) ------------------------------------------------- */
+#contact {
+  border-top: 1px solid var(--deep-rule);
+}
+
+.contact {
+  display: grid;
+  gap: clamp(36px, 5vw, 64px);
+}
+
+.big-cta {
+  font-weight: 300;
+  font-size: clamp(64px, 13vw, 190px);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.big-cta span {
+  color: var(--deep-mute);
+}
+
+/* Three columns: Email | Elsewhere | Based in */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  border-top: 1px solid var(--deep-rule);
+  padding-top: 28px;
+}
+
+.contact-grid dt {
+  font-size: 13px;
+  color: var(--deep-mute);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.contact-grid dd {
+  margin: 0;
+}
+
+.contact-grid .availability {
+  margin-top: 8px;
+}
+
+.mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.mail a {
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -.02em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--deep-rule);
+  overflow-wrap: anywhere;
+}
+
+.mail a:hover {
+  border-color: var(--deep-ink);
+}
+
+/* Copy-email button. all:unset strips the browser's default button styling. */
+button.copy-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 16px;
+  min-height: 24px;
+  border-radius: 99px;
+  border: 1px solid var(--deep-rule);
+  color: var(--deep-ink);
+  transition: background .2s;
+}
+
+button.copy-btn:hover {
+  background: var(--deep-hover);
+}
+
+/* Restores the keyboard focus ring that all:unset removes (see base.css 2.5).
+   No border-radius here, so the ring follows the button's pill shape. */
+button.copy-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.links a {
+  text-decoration: none;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.links a:hover {
+  color: var(--sand);
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid var(--deep-rule);
+  font-size: 14px;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
